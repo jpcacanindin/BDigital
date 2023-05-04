@@ -3,7 +3,7 @@ const assert = require('assert');
 require("chromedriver");
 
 
-async function test(username, password) {
+async function inventory(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
 
@@ -164,4 +164,4 @@ async function test(username, password) {
 
 }
 
-test("standard_user", "secret_sauce");
+inventory("standard_user", "secret_sauce");

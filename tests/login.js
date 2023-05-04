@@ -2,11 +2,6 @@ const {By, Key, Builder, Browser} = require("selenium-webdriver");
 const assert = require('assert');
 require("chromedriver");
 
-loginStandardUser("standard_user", "secret_sauce");
-loginLockedOutUser("locked_out_user", "secret_sauce");
-loginNotExistingUser("abc123", "secret_sauce");
-loginEmptyFields("standard_user", "");
-
 async function loginStandardUser(username, password){
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
@@ -97,6 +92,11 @@ async function loginEmptyFields(username, password) {
     assert.deepStrictEqual(actError, expError);
     console.log("Test #3 success");
 }
+
+loginStandardUser("standard_user", "secret_sauce");
+loginLockedOutUser("locked_out_user", "secret_sauce");
+loginNotExistingUser("abc123", "secret_sauce");
+loginEmptyFields("standard_user", "");
 
 
 
