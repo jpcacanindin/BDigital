@@ -29,17 +29,17 @@ async function inventory(username, password) {
     let expItem1Pic = "https://qa-challenge.codesubmit.io/static/media/bike-light-1200x1500.37c843b0.jpg";
 
     assert.deepStrictEqual(item1Title, expItem1Title);
-    console.log("Test #2 success");
+    console.log("Item 1: Test #1 success");
     assert.deepStrictEqual(item1Desc, expItem1Desc);
-    console.log("Test #3 success");
+    console.log("Item 1: Test #2 success")
     assert.deepStrictEqual(item1Pric, expItem1Pric);
-    console.log("Test #4 success");
+    console.log("Item 1: Test #3 success")
     assert.deepStrictEqual(item1Img, expItem1Pic);
-    console.log("Test #5 success");
+    console.log("Item 1: Test #4 success")
     await driver.findElement(By.id("add-to-cart-sauce-labs-bike-light")).click();
-    console.log("Test #6 success");
+    console.log("Item 1: Test #5 success")
     await driver.findElement(By.id("remove-sauce-labs-bike-light")).click();
-    console.log("Test #7 success");
+    console.log("Item 1: Test #6 success")
 
     let item2Title = await driver.findElement(By.id("item_1_title_link")).getText();
     let item2Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[3]/div[2]/div[1]/div")).getText();
@@ -53,17 +53,17 @@ async function inventory(username, password) {
     let expItem2Pic = "https://qa-challenge.codesubmit.io/static/media/bolt-shirt-1200x1500.c2599ac5.jpg";
 
     assert.deepStrictEqual(item2Title, expItem2Title);
-    console.log("Test #8 success");
+    console.log("Item 2: Test #1 success")
     assert.deepStrictEqual(item2Desc, expItem2Desc);
-    console.log("Test #9 success");
+    console.log("Item 2: Test #2 success")
     assert.deepStrictEqual(item2Pric, expItem2Pric);
-    console.log("Test #10 success");
+    console.log("Item 2: Test #3 success")
     assert.deepStrictEqual(item2Img, expItem2Pic);
-    console.log("Test #11 success");
+    console.log("Item 2: Test #4 success")
     await driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-    console.log("Test #12 success");
+    console.log("Item 2: Test #5 success")
     await driver.findElement(By.id("remove-sauce-labs-bolt-t-shirt")).click();
-    console.log("Test #13 success");
+    console.log("Item 2: Test #6 success")
 
     let item3Title = await driver.findElement(By.id("item_2_title_link")).getText();
     let item3Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[5]/div[2]/div[1]/div")).getText();
@@ -77,17 +77,17 @@ async function inventory(username, password) {
     let expItem3Pic = "https://qa-challenge.codesubmit.io/static/media/red-onesie-1200x1500.2ec615b2.jpg";
 
     assert.deepStrictEqual(item3Title, expItem3Title);
-    console.log("Test #14 success");
+    console.log("Item 3: Test #1 success")
     assert.deepStrictEqual(item3Desc, expItem3Desc);
-    console.log("Test #15 success");
+    console.log("Item 3: Test #2 success")
     assert.deepStrictEqual(item3Pric, expItem3Pric);
-    console.log("Test #16 success");
+    console.log("Item 3: Test #3 success")
     assert.deepStrictEqual(item3Img, expItem3Pic);
-    console.log("Test #17 success");
+    console.log("Item 3: Test #4 success")
     await driver.findElement(By.id("add-to-cart-sauce-labs-onesie")).click();
-    console.log("Test #18 success");
+    console.log("Item 3: Test #5 success")
     await driver.findElement(By.id("remove-sauce-labs-onesie")).click();
-    console.log("Test #19 success");
+    console.log("Item 3: Test #6 success")
 
     let item4Title = await driver.findElement(By.id("item_3_title_link")).getText();
     let item4Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[6]/div[2]/div[1]/div")).getText();
@@ -101,17 +101,17 @@ async function inventory(username, password) {
     let expItem4Pic = "https://qa-challenge.codesubmit.io/static/media/red-tatt-1200x1500.30dadef4.jpg";
 
     assert.deepStrictEqual(item4Title, expItem4Title);
-    console.log("Test #20 success");
+    console.log("Item 4: Test #1 success")
     assert.deepStrictEqual(item4Desc, expItem4Desc);
-    console.log("Test #21 success");
+    console.log("Item 4: Test #2 success")
     assert.deepStrictEqual(item4Pric, expItem4Pric);
-    console.log("Test #22 success");
+    console.log("Item 4: Test #3 success")
     assert.deepStrictEqual(item4Img, expItem4Pic);
-    console.log("Test #23 success");
+    console.log("Item 4: Test #4 success")
     await driver.findElement(By.id("add-to-cart-test.allthethings()-t-shirt-(red)")).click();
-    console.log("Test #24 success");
+    console.log("Item 4: Test #5 success")
     await driver.findElement(By.id("remove-test.allthethings()-t-shirt-(red)")).click();
-    console.log("Test #25 success");
+    console.log("Item 4: Test #6 success")
 
 
     let item5Title = await driver.findElement(By.id("item_4_title_link")).getText();
@@ -126,17 +126,17 @@ async function inventory(username, password) {
     let expItem5Pic = "https://qa-challenge.codesubmit.io/static/media/sauce-pullover-1200x1500.51d7ffaf.jpg";
 
     assert.deepStrictEqual(item5Title, expItem5Title);
-    console.log("Test #26 success");
+    console.log("Item 5: Test #1 success")
     assert.deepStrictEqual(item5Desc, expItem5Desc);
-    console.log("Test #27 success");
+    console.log("Item 5: Test #2 success")
     assert.deepStrictEqual(item5Pric, expItem5Pric);
-    console.log("Test #28 success");
+    console.log("Item 5: Test #3 success")
     assert.deepStrictEqual(item5Img, expItem5Pic);
-    console.log("Test #29 success");
-    await driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
-    console.log("Test #30 success");
-    await driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
-    console.log("Test #31 success");
+    console.log("Item 5: Test #4 success")
+    await driver.findElement(By.id("add-to-cart-sauce-labs-backpack")).click();
+    console.log("Item 5: Test #5 success")
+    await driver.findElement(By.id("remove-sauce-labs-backpack")).click();
+    console.log("Item 5: Test #6 success")
 
     let item6Title = await driver.findElement(By.id("item_5_title_link")).getText();
     let item6Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[1]/div")).getText();
@@ -150,17 +150,17 @@ async function inventory(username, password) {
     let expItem6Pic = "https://qa-challenge.codesubmit.io/static/media/sauce-pullover-1200x1500.51d7ffaf.jpg";
 
     assert.deepStrictEqual(item6Title, expItem6Title);
-    console.log("Test #17 success");
+    console.log("Item 6: Test #1 success")
     assert.deepStrictEqual(item6Desc, expItem6Desc);
-    console.log("Test #18 success");
+    console.log("Item 6: Test #2 success")
     assert.deepStrictEqual(item6Pric, expItem6Pric);
-    console.log("Test #19 success");
+    console.log("Item 6: Test #3 success")
     assert.deepStrictEqual(item6Img, expItem6Pic);
-    console.log("Test #29 success");
+    console.log("Item 6: Test #4 success")
     await driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
-    console.log("Test #30 success");
+    console.log("Item 6: Test #5 success")
     await driver.findElement(By.id("remove-sauce-labs-fleece-jacket")).click();
-    console.log("Test #31 success");
+    console.log("Item 6: Test #6 success")
 
 }
 

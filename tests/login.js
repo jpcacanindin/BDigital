@@ -6,6 +6,12 @@ async function loginStandardUser(username, password){
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
 
+    let actTitle = await driver.getTitle();
+    const expTitle = "Swag Labs";
+
+    assert.deepStrictEqual(actTitle, expTitle);
+    console.log("Test #1 success");
+
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
@@ -14,7 +20,7 @@ async function loginStandardUser(username, password){
     const expUrl = "https://qa-challenge.codesubmit.io/inventory.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
-    console.log("Test #1 success");
+    console.log("Test #2 success");
 }
 
 async function loginLockedOutUser(username, password) {

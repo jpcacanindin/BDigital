@@ -39,7 +39,7 @@ async function checkoutNegative(username, password) {
     let expError = "Error: First Name is required";
     
     assert.deepStrictEqual(actError, expError);
-    console.log("Test #1 success");
+    console.log("Firstname empty success");
 
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.DELETE);
@@ -56,7 +56,7 @@ async function checkoutNegative(username, password) {
     expError = "Error: Last Name is required";
     
     assert.deepStrictEqual(actError, expError);
-    console.log("Test #2 success");
+    console.log("Lastname empty success");
 
     
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.CONTROL + "a");
@@ -73,7 +73,7 @@ async function checkoutNegative(username, password) {
     expError = "Error: Postal Code is required";
     
     assert.deepStrictEqual(actError, expError);
-    console.log("Test #3 success");
+    console.log("Postal Code empty success");
 
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.DELETE);
@@ -89,7 +89,7 @@ async function checkoutNegative(username, password) {
     expError = "Error: First Name is required";
     
     assert.deepStrictEqual(actError, expError);
-    console.log("Test #4 success");
+    console.log("Emptyfield success");
     
 }
 

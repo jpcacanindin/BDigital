@@ -14,7 +14,7 @@ async function cart(username, password) {
     let expUrl = "https://qa-challenge.codesubmit.io/inventory.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
-    console.log("Test #1 success");
+    console.log("Cart: Test #1 success");
 
     let item1Title = await driver.findElement(By.id("item_0_title_link")).getText();
     let item1Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[1]/div")).getText();
@@ -26,20 +26,20 @@ async function cart(username, password) {
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/cart.html";
     assert.deepStrictEqual(actUrl, expUrl);
-    console.log("Test #2 success");
+    console.log("Cart: Test #2 success");
     
     let expitem1Title = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[1]/div[3]/div[2]/a")).getText();
     let expitem1Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[1]/div[3]/div[2]/div[1]")).getText();
     let expitem1Pric = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[1]/div[3]/div[2]/div[2]/div")).getText();
-    await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[1]/div[3]/div[2]/div[2]/button")).click();
-
+    
     assert.deepStrictEqual(item1Title, expitem1Title);
-    console.log("Test #3 success");
+    console.log("Item: Test #1 success");
     assert.deepStrictEqual(item1Desc, expitem1Desc);
-    console.log("Test #4 success");
+    console.log("Item: Test #2 success");
     assert.deepStrictEqual(item1Pric, expitem1Pric);
-    console.log("Test #5 success");
+    console.log("Item: Test #3 success");
 
+    await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[1]/div[3]/div[2]/div[2]/button")).click();
 }
 
 async function checkout(username, password) {
