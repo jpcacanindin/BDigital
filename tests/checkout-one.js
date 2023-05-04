@@ -5,17 +5,24 @@ require("chromedriver");
 async function checkout(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
+
+    //login
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
     
+    //go to URL
     await driver.get("https://qa-challenge.codesubmit.io/checkout-step-one.html");
     
+    //fill up form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys("John Paul");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("Cacanindin");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("1210");
+    
+    //go to check out 2
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
     
+    //check URL
     let actUrl = await driver.getCurrentUrl();
     let expUrl = "https://qa-challenge.codesubmit.io/checkout-step-two.html";
     assert.deepStrictEqual(actUrl, expUrl);
@@ -25,66 +32,78 @@ async function checkout(username, password) {
 async function checkoutNegative(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
+
+    //login
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
     
+    //go to URL
     await driver.get("https://qa-challenge.codesubmit.io/checkout-step-one.html");
     
+    //fill up form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("Cacanindin");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("1210");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
     
+    //check error message
     let actError = await driver.findElement(By.className("error-message-container")).getText();
     let expError = "Error: First Name is required";
     
     assert.deepStrictEqual(actError, expError);
     console.log("Firstname empty success");
 
+    //clear form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.DELETE);
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys(Key.DELETE);
     
+    //fill up form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys("John Paul");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("1210");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
     
-
+    //check error message
     actError = await driver.findElement(By.className("error-message-container")).getText();
     expError = "Error: Last Name is required";
     
     assert.deepStrictEqual(actError, expError);
     console.log("Lastname empty success");
 
-    
+    //clear form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.DELETE);
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys(Key.DELETE);
 
+    //fill up form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys("John Paul");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("Cacanindin");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
     
+    //check error message
     actError = await driver.findElement(By.className("error-message-container")).getText();
     expError = "Error: Postal Code is required";
     
     assert.deepStrictEqual(actError, expError);
     console.log("Postal Code empty success");
 
+    //clear form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys(Key.DELETE);
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys(Key.DELETE);
 
+    //fill up form
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys("");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
     
+    //check error message
     actError = await driver.findElement(By.className("error-message-container")).getText();
     expError = "Error: First Name is required";
     

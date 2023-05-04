@@ -6,16 +6,19 @@ async function endToEnd(username, password){
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
 
+    //login
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
 
+    //check URL
     let actUrl = await driver.getCurrentUrl();
     let expUrl = "https://qa-challenge.codesubmit.io/inventory.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
     console.log("Inventory: Test #1 success");
 
+    //get data then click add to cart
     let item1Title = await driver.findElement(By.id("item_0_title_link")).getText();
     let item1Desc = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[1]/div")).getText();
     let item1Pric = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[2]/div[2]/div[2]/div")).getText();
@@ -46,14 +49,17 @@ async function endToEnd(username, password){
     let item6Pric = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div/div/div[4]/div[2]/div[2]/div")).getText();
     await driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket")).click();
     
+    //go to cart
     await driver.findElement(By.id("shopping_cart_container")).click();
 
+    //check URL
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/cart.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
     console.log("Inventory: Test #1 success");
 
+    //get data then compare to inventory data
     let exItem1Title = await driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div[2]/a/div")).getText();
     assert.strictEqual(item1Title, exItem1Title);
     let exItem1Desc = await driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div[2]/div[1]")).getText();
@@ -102,25 +108,30 @@ async function endToEnd(username, password){
     assert.strictEqual(item6Pric, exItem6Pric);
     console.log("Cart: Test #7 success")
 
+    //click checkout
     await driver.findElement(By.id("checkout")).click();
 
+    //check URL
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/checkout-step-one.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
     console.log("Checkout1: Test #1 success");
 
+    //fill up form then click continue
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[1]/input")).sendKeys("John Paul");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[2]/input")).sendKeys("Cacanindin");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[1]/div[3]/input")).sendKeys("1210");
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/form/div[2]/input")).click();
 
+    //check URL
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/checkout-step-two.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
     console.log("Checkout2: Test #1 success");
 
+    //get data then compare to inventory data
     exItem1Title = await driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div[2]/a/div")).getText();
     assert.strictEqual(item1Title, exItem1Title);
     exItem1Desc = await driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div[1]/div[3]/div[2]/div[1]")).getText();
@@ -169,6 +180,7 @@ async function endToEnd(username, password){
     assert.strictEqual(item6Pric, exItem6Pric);
     console.log("Checkout2: Test #7 success");
 
+    //get form amount
     let info6 = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[2]/div[6]")).getText();
     info6 = parseFloat(info6.replace("Item total: $", ""));
     let info7 = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[2]/div[7]")).getText();
@@ -176,7 +188,7 @@ async function endToEnd(username, password){
     let info8 = await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[2]/div[8]")).getText();
     info8 = parseFloat(info8.replace("Total: $", ""));
     
-    
+    //get item amount
     exItem1Pric = parseFloat(exItem1Pric.replace("$", ""));
     exItem2Pric = parseFloat(exItem2Pric.replace("$", ""));
     exItem3Pric = parseFloat(exItem3Pric.replace("$", ""));
@@ -184,12 +196,13 @@ async function endToEnd(username, password){
     exItem5Pric = parseFloat(exItem5Pric.replace("$", ""));
     exItem6Pric = parseFloat(exItem6Pric.replace("$", ""));
 
+    //calculate total
     let itemTotal = exItem1Pric + exItem2Pric + exItem3Pric + exItem4Pric + exItem5Pric + exItem6Pric;
     let tax = itemTotal *.08;
     tax = parseFloat(tax.toFixed(1));
     let total = tax + itemTotal;
 
-    
+    //compare amount
     assert.strictEqual(info6, itemTotal);
     console.log("Checkout2: Test #8 success")
     assert.strictEqual(info7, tax);
@@ -197,17 +210,21 @@ async function endToEnd(username, password){
     assert.strictEqual(info8, total)
     console.log("Checkout2: Test #10 success")
     
-
+    //click finish
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/div/div[2]/div[9]/button[2]")).click();
 
+
+    //check URL
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/checkout-complete.html";
 
     assert.deepStrictEqual(actUrl, expUrl);
     console.log("Complete: Test #1 success");
 
+    //click back home
     await driver.findElement(By.xpath("/html/body/div/div/div/div[2]/button")).click();
     
+    //check URL
     actUrl = await driver.getCurrentUrl();
     expUrl = "https://qa-challenge.codesubmit.io/inventory.html";
 

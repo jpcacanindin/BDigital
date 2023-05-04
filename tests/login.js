@@ -26,17 +26,20 @@ async function loginStandardUser(username, password){
 async function loginLockedOutUser(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
-
+    
+    //check title
     let actTitle = await driver.getTitle();
     const expTitle = "Swag Labs";
 
     assert.deepStrictEqual(actTitle, expTitle);
     console.log("Test #1 success");
 
+    //login    
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
 
+    //check error message
     let actError = await driver.findElement(By.className("error-message-container")).getText();
     let expError = "Epic sadface: Sorry, this user has been locked out.";
     
@@ -47,17 +50,20 @@ async function loginLockedOutUser(username, password) {
 async function loginNotExistingUser(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
-
+    
+    //check title
     let actTitle = await driver.getTitle();
     const expTitle = "Swag Labs";
 
     assert.deepStrictEqual(actTitle, expTitle);
     console.log("Test #1 success");
 
+    //login  
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
 
+    //check error message
     let actError = await driver.findElement(By.className("error-message-container")).getText();
     let expError = "Epic sadface: Username and password do not match any user in this service";
     
@@ -69,16 +75,19 @@ async function loginEmptyFields(username, password) {
     let driver = await new Builder().forBrowser("chrome").build();
     await driver.get("https://qa-challenge.codesubmit.io");
 
+    //check title
     let actTitle = await driver.getTitle();
     const expTitle = "Swag Labs";
 
     assert.deepStrictEqual(actTitle, expTitle);
     console.log("Test #1 success");
 
+    //login
     await driver.findElement(By.id("user-name")).sendKeys(username);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
 
+    //check error message
     let actError = await driver.findElement(By.className("error-message-container")).getText();
     let expError = "Epic sadface: Password is required";
     
@@ -86,12 +95,14 @@ async function loginEmptyFields(username, password) {
     console.log("Test #2 success");
 
     password = "secret_sauce";
-
+    
+    //clear fields
     await driver.findElement(By.id("user-name")).sendKeys(Key.CONTROL + "a");
     await driver.findElement(By.id("user-name")).sendKeys(Key.DELETE);
     await driver.findElement(By.id("password")).sendKeys(password);
     await driver.findElement(By.id("login-button")).click();
 
+    //check error message
     actError = await driver.findElement(By.className("error-message-container")).getText();
     expError = "Epic sadface: Username is required";
     
